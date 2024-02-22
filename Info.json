@@ -1,0 +1,14 @@
+{
+	"Id": "rpgs-community-patch",
+	"DisplayName": "RPG Sounds Community Patch",
+	"Author": "Tyler Pixley",
+	"Version": "0.1.0",
+	"ManagerVersion": "0.27.10.0",
+	"GameVersion": "0.27.8",
+	"Requirements": [],
+	"LoadAfter": ["RuntimeUnityEditor"]
+	"AssemblyName": "rpgs-patch.dll"
+	"EntryMethod": "RpgsCommunityPatch.Main.Load",
+	"HomePage": "https://github.com/pixley/rpgs-community-patch",
+	"Repository": "https://github.com/pixley/rpgs-community-patch"
+}
