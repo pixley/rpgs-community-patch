@@ -39,7 +39,7 @@ if ((Get-Command "git" -ErrorAction SilentlyContinue) -eq $null)
     Exit -1
 }
 
-$current_dir = Get-Location
+$current_dir = $PSScriptRoot
 
 # Check if Info.json exists
 $info_json_path = Join-Path $current_dir Info.json

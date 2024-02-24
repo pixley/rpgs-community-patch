@@ -4,7 +4,7 @@
 	"Author": "Tyler Pixley",
 	"Version": "0.0.1",
 	"ManagerVersion": "0.27.10.0",
-	"GameVersion": "0.27.8",
+	"GameVersion": "0.29.7",
 	"Requirements": [],
 	"LoadAfter": ["RuntimeUnityEditor"]
 	"AssemblyName": "rpgs-patch.dll"

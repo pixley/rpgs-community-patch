@@ -31,14 +31,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="0Harmony">
-      <HintPath>E:\Steam\steamapps\common\RPG Sounds\RPG Sounds\RPG Sounds_Data\Managed\UnityModManager\0Harmony.dll</HintPath>
+    <Reference Include="0Harmony, Version=2.2.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>References\0Harmony.dll</HintPath>
     </Reference>
-    <Reference Include="Assembly-CSharp">
-      <HintPath>E:\Steam\steamapps\common\RPG Sounds\RPG Sounds\RPG Sounds_Data\Managed\Assembly-CSharp.dll</HintPath>
+    <Reference Include="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>References\Assembly-CSharp.dll</HintPath>
     </Reference>
-    <Reference Include="Assembly-CSharp-firstpass">
-      <HintPath>E:\Steam\steamapps\common\RPG Sounds\RPG Sounds\RPG Sounds_Data\Managed\Assembly-CSharp-firstpass.dll</HintPath>
+    <Reference Include="Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>References\Assembly-CSharp-firstpass.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -47,14 +50,17 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="UnityEngine">
-      <HintPath>E:\Steam\steamapps\common\RPG Sounds\RPG Sounds\RPG Sounds_Data\Managed\UnityEngine.dll</HintPath>
+    <Reference Include="UnityEngine, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>References\UnityEngine.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.IMGUIModule">
-      <HintPath>E:\Steam\steamapps\common\RPG Sounds\RPG Sounds\RPG Sounds_Data\Managed\UnityEngine.IMGUIModule.dll</HintPath>
+    <Reference Include="UnityEngine.IMGUIModule, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>References\UnityEngine.IMGUIModule.dll</HintPath>
     </Reference>
-    <Reference Include="UnityModManager">
-      <HintPath>E:\Steam\steamapps\common\RPG Sounds\RPG Sounds\RPG Sounds_Data\Managed\UnityModManager\UnityModManager.dll</HintPath>
+    <Reference Include="UnityModManager, Version=0.27.10.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>References\UnityModManager.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -62,4 +68,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>pwsh -Command "&amp; $(ProjectDir)mod-install.ps1 -debug:(\"$(ConfigurationName)\" -eq \"Debug\")"</PostBuildEvent>
+  </PropertyGroup>
 </Project>
