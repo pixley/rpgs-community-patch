@@ -67,7 +67,7 @@ if ($info_json_contents.Count -lt 1)
 
 # Find current version
 $version_string = ""
-$version_format_regex = '[0-9]+\.[0-9]+\.[0.9]+'
+$version_format_regex = '[0-9]+\.[0-9]+\.[0-9]+'
 $version_line = -1
 for($i = 0; $i -lt $info_json_contents.Count; $i++)
 {
