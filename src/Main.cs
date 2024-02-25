@@ -7,28 +7,59 @@ namespace RpgsCommunityPatch
 {
     static class Main
     {
-        public static UnityModManager.ModEntry mod;
+        private static UnityModManager.ModEntry mod;
+        private static Harmony harmony;
 
         // Entry point for the mod.
         static bool Load(UnityModManager.ModEntry modEntry)
         {
+            harmony = new Harmony(modEntry.Info.Id);
             mod = modEntry;
 
-            mod.Logger.Log("Hello World!");
-
-            string version = GetVersionString();
-            mod.Logger.Log("RPG Sounds Community Patch version {version} loaded.");
-
-            var harmony = new Harmony(modEntry.Info.Id);
-            harmony.PatchAll(Assembly.GetExecutingAssembly());
+            mod.OnToggle = OnToggle;
 
             return true;
+        }
+
+        // Controls enable/disable
+        static bool OnToggle(UnityModManager.ModEntry modEntry, bool value)
+        {
+            if (value)
+            {
+                OnEnable();
+            }
+            else
+            {
+                OnDisable();
+            }
+
+            return true;
+        }
+
+        static void OnEnable()
+        {
+            string version = GetVersionString();
+            Log($"RPG Sounds Community Patch version {version} loaded.");
+
+            harmony.PatchAll(Assembly.GetExecutingAssembly());
+        }
+
+        static void OnDisable()
+        {
+            Log("RPG Sounds Community Patch disabled.");
+
+            harmony.UnpatchAll(harmony.Id);
         }
 
         static string GetVersionString()
         {
             // ModEntry contains the version info pulled from Info.json
             return mod.Version.ToString();
+        }
+
+        static void Log(string logString)
+        {
+            mod.Logger.Log(logString);
         }
     }
 }
