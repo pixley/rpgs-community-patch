@@ -44,15 +44,5 @@ namespace RpgsCommunityPatch
                 return instructions;
             }
         }
-
-        static void Postfix(AudioStreamBase __instance, Dictionary<string, object> ___tags)
-        {
-            Main.Log($"Sound {__instance.url} has following tags:");
-
-            foreach( KeyValuePair<string, object> pair in ___tags)
-            {
-                Main.Log($"\tKey: {pair.Key}, Value: {pair.Value}");
-            }
-        }
     }
 }
