@@ -1,5 +1,4 @@
-﻿using UnityEngine;
-using UnityModManagerNet;
+﻿using UnityModManagerNet;
 using HarmonyLib;
 using System.Reflection;
 
@@ -51,13 +50,13 @@ namespace RpgsCommunityPatch
             harmony.UnpatchAll(harmony.Id);
         }
 
-        static string GetVersionString()
+        public static string GetVersionString()
         {
             // ModEntry contains the version info pulled from Info.json
             return mod.Version.ToString();
         }
 
-        static void Log(string logString)
+        public static void Log(string logString)
         {
             mod.Logger.Log(logString);
         }
