@@ -1,6 +1,10 @@
 bin/**
 obj/**
+fmod_win32_mf/lib/**
+fmod_win32_mf/x64/**
 .vs/**
+fmod_win32_mf/.vs/**
 *.suo
 *.csproj.user
+*.vcxproj.user
 local-rpgs-path.txt

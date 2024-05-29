@@ -1,6 +1,7 @@
 ﻿using UnityModManagerNet;
 using HarmonyLib;
 using System.Reflection;
+using System.IO;
 
 namespace RpgsCommunityPatch
 {
@@ -37,17 +38,20 @@ namespace RpgsCommunityPatch
 
         static void OnEnable()
         {
+            harmony.PatchAll(Assembly.GetExecutingAssembly());
+
             string version = GetVersionString();
             Log($"RPG Sounds Community Patch version {version} loaded.");
-
-            harmony.PatchAll(Assembly.GetExecutingAssembly());
         }
 
         static void OnDisable()
         {
-            Log("RPG Sounds Community Patch disabled.");
-
             harmony.UnpatchAll(harmony.Id);
+
+            // Perform any cleanup
+            CodecLoader.CleanupPlugin();
+
+            Log("RPG Sounds Community Patch disabled.");
         }
 
         public static string GetVersionString()
@@ -59,6 +63,11 @@ namespace RpgsCommunityPatch
         public static void Log(string logString)
         {
             mod.Logger.Log(logString);
+        }
+
+        public static string GetModDirectory()
+        {
+            return mod.Path;
         }
     }
 }

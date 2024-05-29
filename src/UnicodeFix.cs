@@ -20,13 +20,14 @@ namespace RpgsCommunityPatch
             bool injectionAttempted = false;
 
             MethodInfo PtrToStringAnsiMethod = typeof(Marshal).GetMethod("PtrToStringAnsi", new Type[] { typeof(IntPtr), typeof(int) });
+            MethodInfo PtrToStringUniMethod = typeof(Marshal).GetMethod("PtrToStringUni", new Type[] { typeof(IntPtr), typeof(int) });
             for (int i = 0; i < codes.Count; i++)
             {
                 if (codes[i].opcode == OpCodes.Call)
                 {
                     if (codes[i].operand as MethodInfo == PtrToStringAnsiMethod)
                     {
-                        codes[i].operand = typeof(Marshal).GetMethod("PtrToStringUni", new Type[] { typeof(IntPtr), typeof(int) });
+                        codes[i].operand = PtrToStringUniMethod;
 
                         injectionAttempted = true;
                     }

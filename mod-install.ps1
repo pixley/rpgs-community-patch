@@ -20,12 +20,18 @@ $current_dir = $PSScriptRoot
 $info_json_path = Join-Path $current_dir Info.json
 # Now for DLL path
 $build_config = $debug ? "Debug" : "Release"
-$path_to_binary = Join-Path $current_dir "bin" $build_config "rpgs-patch.dll"
+$path_to_binaries = Join-Path $current_dir "bin" $build_config
+# Grab all DLLs
+$dlls_unsplit = Get-ChildItem -Path (Join-Path $path_to_binaries *.dll) -Name
+$dlls = $dlls_unsplit.Split(" ")
 
 Write-Output "Begin $build_config install to RPG Sounds."
 
 # Authoritative list of files to copy to the mod folder
-$files_to_copy = @($path_to_binary, $info_json_path)
+$files_to_copy = @($info_json_path)
+for ($i = 0; $i -lt $dlls.length; $i += 1) {
+	$files_to_copy += Join-Path $path_to_binaries $dlls[$i]
+}
 
 # Check to make sure we have everything we need
 foreach ($file in $files_to_copy)
