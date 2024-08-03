@@ -21,11 +21,8 @@ namespace RpgsCommunityPatch
 
             // This overrides the txtVersion private member that is used to write version info
             // in the top-left corner of the application
-            // Unintuitively, GetTextInfo() sets the text field
             temp.enableWordWrapping = false;
             temp.SetText(temp.text + " + Community Patch v" + Main.GetVersionString());
-
-            //textInfo.ResetVertexLayout(false);
 
             versionField.SetValue(temp);
         }
