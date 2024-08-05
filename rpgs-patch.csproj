@@ -116,6 +116,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="src\ModVersion.cs" />
     <Compile Include="src\NewFormats.cs" />
+    <Compile Include="src\OutputDeviceSave.cs" />
     <Compile Include="src\ScrollSensitivity.cs" />
     <Compile Include="src\UnicodeFix.cs" />
   </ItemGroup>

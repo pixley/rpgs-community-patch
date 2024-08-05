@@ -17,14 +17,12 @@ namespace RpgsCommunityPatch
         private static void Postfix(ViewAppState __instance)
         {
             Traverse versionField = Traverse.Create(__instance).Field("txtVersion");
-            TMPro.TextMeshProUGUI temp = (TMPro.TextMeshProUGUI)(versionField.GetValue());
+            TMPro.TextMeshProUGUI versionText = (TMPro.TextMeshProUGUI)(versionField.GetValue());
 
             // This overrides the txtVersion private member that is used to write version info
             // in the top-left corner of the application
-            temp.enableWordWrapping = false;
-            temp.SetText(temp.text + " + Community Patch v" + Main.GetVersionString());
-
-            versionField.SetValue(temp);
+            versionText.enableWordWrapping = false;
+            versionText.text = versionText.text + " + Community Patch v" + Main.GetVersionString();
         }
     }
 }
