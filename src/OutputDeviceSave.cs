@@ -61,46 +61,32 @@ namespace RpgsCommunityPatch.src
             }
 
             deviceChanger.SetCurrentDevice(__instance.currentOutputDeviceIndex);
-            Main.Log("Loaded audio output device from settings.");
+            Main.Log($"Loaded audio output device {deviceChanger.CurrentDevice} from settings.");
         }
 
         private static OutputDeviceChanger deviceChanger = null;
     }
 
-    [HarmonyPatch(typeof(ViewOutputDeviceChanger), "OnEnable")]
+    [HarmonyPatch(typeof(ViewOutputDeviceChanger), "Start")]
     public static class UpdateDropdown
     {
-        private static bool Prefix(ViewOutputDeviceChanger __instance)
+        private static void Postfix(ViewOutputDeviceChanger __instance)
         {
-            // Loaded device selection doesn't propagate normally, so we need to force it
             Traverse instanceTraverse = Traverse.Create(__instance);
-
             OutputDeviceChangerConnector connector = instanceTraverse.Field("outputDeviceChangerConnector").GetValue<OutputDeviceChangerConnector>();
-            connector.Controller.UpdateDeviceList();
-            // Traverse.GetValue() executes the method
-            // Push the options into the dropdown
-            instanceTraverse.Method("OnListUpdated").GetValue();
-
-            DropDown_TMP_Custom dropdown = instanceTraverse.Field("dropdown").GetValue<DropDown_TMP_Custom>();
-            // Set the current selection
-            Main.Log($"Number of options in dropdown now: {dropdown.options.Count}");
-            Main.Log($"Double-checking current device index: {connector.Controller.CurrentDevice}");
-            dropdown.value = connector.Controller.CurrentDevice;
-
-            /*
-            // Somehow the actual rendered text misses this, so we need to force the update here
-            TMPro.TextMeshProUGUI[] textMeshChildren = __instance.gameObject.GetComponentsInChildren<TMPro.TextMeshProUGUI>();
-            foreach (TMPro.TextMeshProUGUI child in textMeshChildren)
+            connector.ControllerAssigned += delegate (OutputDeviceChanger outputDeviceChanger)
             {
-                if (child.gameObject.name.EndsWith("Label"))
-                {
-                    Main.Log($"Found output device dropdown label!  Attempt to set to '{dropdown.captionText.text}'.");
-                    child.text = dropdown.captionText.text;
-                }
-            }
-            */
+                DropDown_TMP_Custom dropdown = instanceTraverse.Field("dropdown").GetValue<DropDown_TMP_Custom>();
 
-            return false;
+                // Traverse.GetValue() executes the method
+                // Push the options into the dropdown
+                instanceTraverse.Method("OnListUpdated").GetValue();
+
+                // Set the current selection
+                dropdown.value = connector.Controller.CurrentDevice;
+
+                Main.Log($"Pushed saved audio output device {dropdown.value} to settings dropdown.");
+            };
         }
     }
 }
