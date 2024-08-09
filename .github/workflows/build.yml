@@ -1,6 +1,7 @@
 name: Release RPG Sounds Community Patch
 
 on:
+  workflow-dispatch
   push:
     tags:
       - "*"
