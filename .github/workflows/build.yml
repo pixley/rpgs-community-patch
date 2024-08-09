@@ -5,6 +5,11 @@ on:
     tags:
       - "*"
   workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Input tag for release'
+        required: true
+        type: string
 
 jobs:
   build:
@@ -31,8 +36,9 @@ jobs:
       - name: Create release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TAG: ${{github.event.action == push && GITHUB_REF#refs/tags/ || inputs.tag}}
         run: |
-          tag="${GITHUB_REF#refs/tags/}"
+          tag=TAG
           gh release create "$tag" \
             --title="$tag" \
             --draft \
