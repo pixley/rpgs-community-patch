@@ -16,6 +16,14 @@ if ($PSVersionTable.PSVersion.Major -lt 7)
 
 $current_dir = $PSScriptRoot
 
+# Check if we need to be suppressed
+$suppressor_path = Join-Path $current_dir suppress-install-ps1.txt
+if (Test-Path -Path $suppressor_path -Leaf)
+{
+	Write-Output "This is an automated build.  Skipping install."
+	Exit 0
+}
+
 # Get path to Info.json
 $info_json_path = Join-Path $current_dir Info.json
 # Now for DLL path
