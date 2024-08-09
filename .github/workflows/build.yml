@@ -36,9 +36,9 @@ jobs:
       - name: Create release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          TAG: ${{github.event_name == 'push' && github.ref_name || inputs.tag}}
         run: |
-          tag=TAG
+          tag=${{github.event_name == 'push' && github.ref_name || inputs.tag}}
+
           gh release create "$tag" \
             --title="$tag" \
             --draft \
