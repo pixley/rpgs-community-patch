@@ -26,7 +26,7 @@ jobs:
       - name: Build Mod
         working-directory:
         run: |
-          & "C:/Program Files (x86)/Microsoft Visual Studio/2019/Community/Common7/IDE/devenv.exe" rpgs-patch.sln /Build "Release|x64"
+          & "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/Common7/IDE/devenv.exe" rpgs-patch.sln /Build "Release|x64"
 
       - name: Create release
         env:
