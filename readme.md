@@ -31,7 +31,7 @@ The rpgs-community-patch solution requires Visual Studio 2019 (any edition), no 
 
 To make use of the automatic install-after-build script, install PowerShell Core 7.0 or newer.
 
-To build the MPEG-4 support library fmod_win32_mf, you will need to download the [FMOD Engine](https://www.fmod.com/download#fmodengine), version 2.01.07.  This is free software, but you do have to register for an FMOD account.  Once that is installed, copy `[FMOD install]/FMOD Studio API Windows/api/core/lib/x64fmod_vc.lib` to `[repo directory]/fmod_win32_mf/lib`.  This is free software, but you do have to register for an FMOD account.
+To build the MPEG-4 support library fmod_win32_mf, you will need to download the [FMOD Engine](https://www.fmod.com/download#fmodengine), version 2.01.07.  This is free software, but you do have to register for an FMOD account.  Once that is installed, copy `[FMOD install]/FMOD Studio API Windows/api/core/lib/x64/fmod_vc.lib` to `[repo directory]/fmod_win32_mf/lib`.  This is free software, but you do have to register for an FMOD account.
 
 This repository provides reference assemblies for relevant packages used by RPG Sounds and Unity Mod Manager.  As reference assemblies, they do not actually contain any unlicensed software, instead only providing the API.
 
