@@ -1,0 +1,35 @@
+name: Release RPG Sounds Community Patch
+
+on:
+  push:
+    tags:
+      - "*"
+
+jobs:
+  build:
+    runs-on: windows-2019
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Suppress install script
+        run: echo "install script suppressor!" > suppress-install-ps1.txt
+
+      - name: Get FMOD library from private repo
+        env:
+          TOKEN: ${{ secrets.fmod_lib_repo }}
+        run: |
+          curl --output fmod_win32_mf/lib/fmod_vc.lib -H "Authorization: token ${TOKEN}" https://raw.githubusercontent.com/pixley/fmod-lib-for-rpgs-patch/main/fmod_vc.lib
+
+      - name: Build Mod
+        run: devenv rpgs-patch.sln /Build "Release|x64"
+
+      - name: Create release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          tag="${GITHUB_REF#refs/tags/}"
+          gh release create "$tag" \
+            --title="$tag" \
+            --draft \
+            Info.json bin/Release/fmod_win32_mf.dll bin/Release/rpgs-patch.dll readme.md license.txt
