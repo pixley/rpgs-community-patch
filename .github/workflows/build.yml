@@ -19,6 +19,7 @@ jobs:
         env:
           TOKEN: ${{ secrets.FMOD_LIB_REPO }}
         run: |
+          mkdir fmod_win32_mf/lib
           curl --output fmod_win32_mf/lib/fmod_vc.lib -H "Authorization: token ${TOKEN}" https://raw.githubusercontent.com/pixley/fmod-lib-for-rpgs-patch/main/fmod_vc.lib
 
       - name: Build Mod
