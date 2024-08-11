@@ -39,7 +39,7 @@ jobs:
         run: |
           $tag="${{github.event_name == 'push' && github.ref_name || inputs.tag}}"
 
-          gh release create "$tag" \
-            -t "$tag" \
-            -d \
+          gh release create "$tag" `
+            --title="$tag" `
+            --draft `
             Info.json bin/Release/fmod_win32_mf.dll bin/Release/rpgs-patch.dll readme.md license.txt
