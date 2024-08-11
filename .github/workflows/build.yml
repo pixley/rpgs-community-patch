@@ -17,6 +17,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+            lfs: 'true'
 
       - name: Suppress install script
         run: echo "install script suppressor!" > suppress-install-ps1.txt
