@@ -31,6 +31,8 @@ jobs:
 
           curl --output .\fmod_win32_mf\lib\fmod_vc.lib -H "Authorization: token ${TOKEN}" https://raw.githubusercontent.com/pixley/fmod-lib-for-rpgs-patch/main/fmod_vc.lib
 
+          echo "Download successful?" (Test-Path -Path .\fmod_win32_mf\lib\fmod_vc.lib -PathType leaf)
+
       - name: Build Mod
         run: |
           & "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/Common7/IDE/devenv.com" rpgs-patch.sln /Rebuild "Release|x64"
