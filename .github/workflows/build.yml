@@ -37,9 +37,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          tag="${{github.event_name == 'push' && github.ref_name || inputs.tag}}"
+          tag=${{github.event_name == 'push' && github.ref_name || inputs.tag}}
 
           gh release create "$tag" \
-            --title="$tag" \
-            --draft \
+            -t "$tag" \
+            -d \
             Info.json bin/Release/fmod_win32_mf.dll bin/Release/rpgs-patch.dll readme.md license.txt
