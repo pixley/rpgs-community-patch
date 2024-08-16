@@ -29,7 +29,7 @@ jobs:
         run: |
           mkdir .\fmod_win32_mf\lib
 		  
-		  Invoke-WebRequest -Uri 'https://github.com/pixley/fmod-lib-for-rpgs-patch/raw/main/fmod_vc.lib' -Outfile '.\fmod_win32_mf\lib' -Headers @{'Authorization' = 'token ${TOKEN}'}
+          Invoke-WebRequest -Uri 'https://github.com/pixley/fmod-lib-for-rpgs-patch/raw/main/fmod_vc.lib' -Outfile '.\fmod_win32_mf\lib' -Headers @{'Authorization' = 'token ${TOKEN}'}
 
           echo "Download successful?" (Test-Path -Path .\fmod_win32_mf\lib\fmod_vc.lib -PathType leaf)
 
