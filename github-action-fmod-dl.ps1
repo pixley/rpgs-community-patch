@@ -26,6 +26,9 @@ if (-not $response_one.BaseResponse.IsSuccessStatusCode)
 
 $response_one_str = [System.Text.Encoding]::UTF8.GetString($response_one.Content)
 $response_one_str = $response_one_str.Replace(' ', '=')
+
+Write-Output $response_one_str
+
 $response_one_dict = ConvertFrom-StringData -StringData $response_one_str
 
 $dl_request = @{operation="download";transfers=,"basic";objects=,@{oid=$response_one_dict["oid"].Substring(7);size=[int]$response_one_dict["size"]}}
