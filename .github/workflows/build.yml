@@ -29,8 +29,6 @@ jobs:
         run: |
           .\github-action-fmod-dl.ps1
 
-          echo "Download successful?" (Test-Path -Path .\fmod_win32_mf\lib\fmod_vc.lib -PathType leaf)
-
       - name: Build Mod
         run: |
           & "C:/Program Files (x86)/Microsoft Visual Studio/2019/Enterprise/Common7/IDE/devenv.com" rpgs-patch.sln /Rebuild "Release|x64"
@@ -40,8 +38,10 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           $tag = "${{github.event_name == 'push' && github.ref_name || inputs.tag}}"
+          
+          Compress-Archive -Path Info.json, .\bin\Release\fmod_win32_mf.dll, .\bin\Release\rpgs-patch.dll, readme.md, license.txt -CompressionLevel Fastest -DestinationPath .\rpgs-patch-win64-$tag.zip
 
           gh release create "$tag" `
             --title="$tag" `
             --draft `
-            Info.json .\bin\Release\fmod_win32_mf.dll .\bin\Release\rpgs-patch.dll readme.md license.txt
+            .\rpgs-patch-win64-$tag.zip
