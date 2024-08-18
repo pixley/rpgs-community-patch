@@ -32,14 +32,14 @@ if (-not $response.BaseResponse.IsSuccessStatusCode)
 Set-Content .\fmod_win32_mf\lib\fmod_vc.lib -Value $response.Content -Encoding Byte
 
 $new_file_len = (Get-Item .\fmod_win32_mf\lib\fmod_vc.lib).Length
-if ($new_file_len -neq 344248)
+if ($new_file_len -ne 344248)
 {
 	Write-Error "Downloaded fmod.lib is incorrect size!"
 	Exit 1
 }
 
 $new_file_hash = (Get-FileHash -Path .\fmod_win32_mf\lib\fmod_vc.lib).Hash
-if ($new_file_hash -neq "93143DA0BE61EE4992D77A16E13A16FC3B422420620C294D08E2F67C12C5A0A7")
+if ($new_file_hash -ne "93143DA0BE61EE4992D77A16E13A16FC3B422420620C294D08E2F67C12C5A0A7")
 {
 	Write-Error "Downloaded fmod.lib does not have the correct hash!"
 	Exit 1
