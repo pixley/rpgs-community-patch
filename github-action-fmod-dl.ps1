@@ -29,7 +29,7 @@ if (-not $response.BaseResponse.IsSuccessStatusCode)
 	Exit 1
 }
 
-Set-Content .\fmod_win32_mf\lib\fmod_vc.lib -Value $response.Content -Encoding Byte
+Set-Content .\fmod_win32_mf\lib\fmod_vc.lib -Value $response.Content -AsByteStream
 
 $new_file_len = (Get-Item .\fmod_win32_mf\lib\fmod_vc.lib).Length
 if ($new_file_len -ne 344248)
