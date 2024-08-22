@@ -23,7 +23,7 @@ The community patch is meant to fix broken functionality or add blatantly missin
 
 The RPG Sounds Community Patch has only been developed and tested against Windows 10 and 11 (64-bit).  However, RPG Sounds itself does support macOS (though it doesn't seem to have made the jump to Apple Silicon).  Pull requests for macOS development are welcome!
 
-Download [Unity Mod Manager](https://www.nexusmods.com/site/mods/21) and use it to install the ZIP file to your RPG Sounds installation.
+Download [Unity Mod Manager](https://www.nexusmods.com/site/mods/21) and use it to install the ZIP file to your RPG Sounds installation.  You can find the Community Patch ZIP on the [Releases page](https://github.com/pixley/rpgs-community-patch/releases).
 
 ## Development Environment
 
