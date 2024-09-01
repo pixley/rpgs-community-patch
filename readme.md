@@ -35,7 +35,7 @@ To build the MPEG-4 support library fmod_win32_mf, you will need to download the
 
 This repository provides reference assemblies for relevant packages used by RPG Sounds and Unity Mod Manager.  As reference assemblies, they do not actually contain any unlicensed software, instead only providing the API.
 
-It is recommended to make use of a C# disassembler/decompiler such as [ILSpy](https://github.com/icsharpcode/ILSpy) or [dnSpy](https://github.com/dnSpy/dnSpy) to reference the internals of RPG Sounds code when developing.
+It is recommended to make use of a C# disassembler/decompiler such as [ILSpy](https://github.com/icsharpcode/ILSpy) or [dnSpy](https://github.com/dnSpyEx/dnSpy) to reference the internals of RPG Sounds code when developing.
 
 Unfortunately, RPG Sounds has proven quite resistant to having debuggers attached to it, particularly at launch.  When launched outside of Steam, the app will restart with Steam attached, which sheds debuggers.  Investigation welcome.
 
