@@ -503,7 +503,7 @@ namespace mediaFoundation
 
         if (readResult == FMOD_OK)
         {
-            if (std::memcmp(signatureBuffer, m4aSig, sizeof(m4aSig)) == 0 || std::memcmp(signatureBuffer + 4, m4aSig + 1, sizeof(m4aSig) - sizeof(UINT32)) == 0)
+            if (std::memcmp(signatureBuffer, m4aSig, sizeof(m4aSig)) == 0 || std::memcmp(signatureBuffer + 4, m4aSig + 4, sizeof(m4aSig) - sizeof(UINT32)) == 0)
             {
                 // It's an M4A!
                 // M4A files can have slightly different signatures.

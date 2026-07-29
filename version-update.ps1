@@ -1,14 +1,13 @@
 # ===================================
 # This script increments the version of the Community Patch in the various files
-# that need updating, git-commits the changes, creates a git-tag with the new
-# version, then submits them.
+# that need updating, git-commits the changes, then creates a git-tag with the new
+# version
 # ===================================
 
 param(
     [switch]$major = $false,
     [switch]$minor = $false,
-    [switch]$patch = $false,
-    [switch]$skipgit = $false
+    [switch]$patch = $false
 )
 
 # User must specify how the version is being incremented
@@ -136,14 +135,9 @@ $assembly_info_contents = $assembly_info_contents.Trim()
 Set-Content -Path $assembly_info_path -Value $assembly_info_contents
 
 # Get this all sorted for git
-if (-not $skipgit)
-{
-    git add "./Info.json" "./Properties/AssemblyInfo.cs"
-    git commit -m "Version updated to $new_version"
-    git tag -a $new_version -m "$new_version"
-    git push
-    git push origin $new_version
-}
+git add "./Info.json" "./Properties/AssemblyInfo.cs"
+git commit -m "Version updated to $new_version"
+git tag -a $new_version -m "$new_version"
 
-Write-Output "Version update complete and submitted!"
+Write-Output "Version update complete and ready to submit!"
 Exit 0
