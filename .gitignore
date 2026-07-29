@@ -1,5 +1,6 @@
 bin/**
 obj/**
+releases/**
 fmod_win32_mf/lib/**
 fmod_win32_mf/x64/**
 .vs/**
