@@ -45,4 +45,40 @@ if ($new_file_hash -ne "93143DA0BE61EE4992D77A16E13A16FC3B422420620C294D08E2F67C
 	Exit 1
 }
 
+# Now download the files we need for .NET Framework 4.0
+$response = Invoke-WebRequest -Headers $headers -Uri https://api.github.com/repos/pixley/fmod-lib-for-rpgs-patch/contents/net_4.zip
+
+if (-not $response.BaseResponse.IsSuccessStatusCode)
+{
+	$status_code = $response.BaseResponse.StatusCode
+	Write-Error "Failure response from GitHub.  Status code $status_code."
+	Exit 1
+}
+
+Set-Content .\net_4.zip -Value $response.Content -AsByteStream
+
+$new_file_len = (Get-Item .\net_4.zip).Length
+if ($new_file_len -ne 30627107)
+{
+	Write-Error "Downloaded net_4.zip is incorrect size!"
+	Exit 1
+}
+
+$new_file_hash = (Get-FileHash -Path .\net_4.zip).Hash
+if ($new_file_hash -ne "7503628D072A21566CDF684353AFD277426BA35EFF8BB347EAD030917B47F0C6")
+{
+	Write-Error "Downloaded net_4.zip does not have the correct hash!"
+	Exit 1
+}
+
+# Unzip .NET Framework 4.0 into the install location
+Expand-Archive -Path .\net_4.zip -DestinationPath "C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0"
+
+# Check to see if the unzip succeeded
+if (-not $?)
+{
+	Write-Error ".NET Framework 4.0 installation via unzip failed."
+	Exit 1
+}
+
 Exit 0
