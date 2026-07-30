@@ -72,7 +72,7 @@ if ($new_file_hash -ne "7503628D072A21566CDF684353AFD277426BA35EFF8BB347EAD03091
 }
 
 # Unzip .NET Framework 4.0 into the install location
-Expand-Archive -Path .\net_4.zip -DestinationPath "C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0"
+Expand-Archive -Path .\net_4.zip -DestinationPath "C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.0" -Force
 
 # Check to see if the unzip succeeded
 if (-not $?)
