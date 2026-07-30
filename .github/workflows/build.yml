@@ -31,7 +31,7 @@ jobs:
 
       - name: Build Mod
         run: |
-          & "C:/Program Files/Microsoft Visual Studio/2022/Enterprise/Common7/IDE/devenv.com" rpgs-patch.sln /Rebuild "Release|x64"
+          & "C:/Program Files/Microsoft Visual Studio/2022/Enterprise/Common7/IDE/devenv.exe" rpgs-patch.sln /Build "Release|x64"
 
       - name: Create release
         if: github.event_name == 'push' || inputs.tag != 'test'
